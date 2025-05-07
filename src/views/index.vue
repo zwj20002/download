@@ -2,8 +2,8 @@
   <div class="container">
     <div class="content">
       <div class="bg-top">
-      <img src="../assets/bg-top.png" alt="" />
-    </div>
+        <img src="../assets/bg-top.png" alt="" />
+      </div>
       <div class="logo-bg">
         <div class="logo"><img src="/logo.png" alt="" /></div>
         <div class="change-language" @click="toggleLanguage">
@@ -42,15 +42,17 @@
       <div class="join-group" @click="getLink">
         <div class="lf">
           <div class="font">{{ t("group") }}</div>
-          <div class="icon"><img src="../assets/qq.png" alt="" /></div>
+          <div class="icon"><img src="../assets/qq.svg" alt="" /></div>
         </div>
-        <div class="rg"><img src="../assets/next.png" alt="" /></div>
+        <div class="rg"><img src="../assets/next.svg" alt="" /></div>
       </div>
     </div>
   </div>
 </template>
+
 <script setup>
 import { t, currentLang, setLanguage } from "../utils/language";
+
 const toggleLanguage = () => {
   setLanguage(currentLang.value === "zh" ? "en" : "zh");
 };
@@ -66,9 +68,11 @@ const getLink = () => {
       console.log(err);
     });
 }
+
 const goQQGroup = (url) => {
   window.location.href = url;
 };
+
 const goDownload = (type) => {
   switch (type) {
     case "ios":
@@ -91,10 +95,30 @@ const goDownload = (type) => {
   }
 };
 </script>
+
 <style scoped lang="scss">
+@media (prefers-color-scheme: dark) {
+  /* 深色模式下的样式 */
+  .container {
+    background: #121212 !important;
+    color: #ffffff;
+    .bg-top {
+      display: none;
+    }
+    .download-font {
+      color: #000;
+    }
+    .join-group {
+      .font {
+        color: #000;
+      }
+    }
+  }
+}
+
 .container {
-  display: flex;
-  justify-content: center;
+  // display: flex;
+  // justify-content: center;
   min-height: 100vh;
   padding-bottom: 50px;
   background: linear-gradient(
@@ -106,17 +130,18 @@ const goDownload = (type) => {
     padding-top: 100px;
     position: relative;
     max-width: 1000px;
+    margin: 0 auto;
     .bg-top {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    top: -220px;
-    img {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
-      height: 100%;
+      top: -220px;
+      img {
+        max-width: 370px;
+        height: 100%;
+      }
     }
-  }
     .logo-bg {
       display: flex;
       justify-content: center;
@@ -133,8 +158,8 @@ const goDownload = (type) => {
       display: flex;
       align-items: center;
       position: absolute;
-      top: 20px;
-      right: 0px;
+      top: 30px;
+      right: 30px;
       font-size: 14px;
       color: #fff;
       background-color: #facbab;
@@ -219,6 +244,7 @@ const goDownload = (type) => {
           text-align: center;
           padding: 10px 0px;
           font-size: 14px;
+          padding: 10px 10px;
         }
       }
     }

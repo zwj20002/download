@@ -6,10 +6,8 @@ const locales = {
   zh: () => import("../locales/zh.json").then((m) => m.default),
 };
 
-// 2. 当前语言（响应式变量）
-const currentLang = ref(
-  localStorage.getItem("lang") || navigator.language.split("-")[0] || "en"
-);
+// 2. 当前语言（优先从localStorage读取，没有则默认英文）
+const currentLang = ref(localStorage.getItem("lang") || "en");
 const messages = ref({});
 
 // 3. 动态加载语言文件
@@ -22,10 +20,10 @@ watchEffect(async () => {
   }
 });
 
-// 4. 切换语言函数
+// 4. 切换语言函数（会自动保存到localStorage）
 const setLanguage = (lang) => {
   currentLang.value = lang;
-  localStorage.setItem("lang", lang); // 持久化存储
+  localStorage.setItem("lang", lang);
 };
 
 // 5. 翻译函数
