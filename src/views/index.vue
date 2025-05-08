@@ -6,14 +6,16 @@
       </div>
       <div class="logo-bg">
         <div class="logo"><img src="/logo.png" alt="" /></div>
+      </div>
+      <div class="tilte-count" style="position: relative; z-index: 1">
+        <div class="title">{{ t("project") }}</div>
+        <div class="entitle">Light Year Service Center</div>
+      </div>
+      <div class="download">
         <div class="change-language" @click="toggleLanguage">
           {{ currentLang === "en" ? "中文" : "EN" }}
-          <div class="icon"><img src="../assets/change.svg" alt="" /></div>
+          <div class="icons"><img src="../assets/change.svg" alt="" /></div>
         </div>
-      </div>
-      <div class="title">{{ t("project") }}</div>
-      <div class="entitle">Light Year Service Center</div>
-      <div class="download">
         <div class="icon">
           <img src="../assets/download.png" alt="" />
         </div>
@@ -42,7 +44,7 @@
       <div class="join-group" @click="getLink">
         <div class="lf">
           <div class="font">{{ t("group") }}</div>
-          <div class="icon"><img src="../assets/qq.svg" alt="" /></div>
+          <div class="icon"><img src="../assets/qq.png" alt="" /></div>
         </div>
         <div class="rg"><img src="../assets/next.svg" alt="" /></div>
       </div>
@@ -67,7 +69,7 @@ const getLink = () => {
     .catch((err) => {
       console.log(err);
     });
-}
+};
 
 const goQQGroup = (url) => {
   window.location.href = url;
@@ -76,7 +78,8 @@ const goQQGroup = (url) => {
 const goDownload = (type) => {
   switch (type) {
     case "ios":
-      window.location.href = "https://apps.apple.com/us/app/%E7%B1%81%E7%89%B9%E6%98%93%E8%80%B3/id6463790725";
+      window.location.href =
+        "https://apps.apple.com/us/app/%E7%B1%81%E7%89%B9%E6%98%93%E8%80%B3/id6463790725";
       break;
     case "android":
       window.location.href =
@@ -98,81 +101,114 @@ const goDownload = (type) => {
 
 <style scoped lang="scss">
 @media (prefers-color-scheme: dark) {
-  /* 深色模式下的样式 */
   .container {
-    background: #121212 !important;
-    color: #ffffff;
+    background-color: #121212 !important;
+  }
+
+  .content {
+    background: #1e1e1e !important;
+    color: #e0e0e0;
+
     .bg-top {
       display: none;
     }
-    .download-font {
-      color: #000;
+
+    .title,
+    .entitle {
+      color: #ffffff;
     }
-    .join-group {
-      .font {
-        color: #000;
+
+    .download {
+      background-color: #2d2d2d !important;
+      border: 1px solid #3d3d3d;
+      .download-font {
+        color: #ffffff !important;
+      }
+
+      .discript {
+        color: #9e9e9e !important;
+      }
+
+      .down-component {
+        background-color: #3a3a3a !important;
+        color: #ff8a65 !important; // 橙色变体，比原来的浅
+        border: 1px solid #4a4a4a;
       }
     }
+
+    .join {
+      color: #9e9e9e !important;
+    }
+
+    .join-group {
+      background-color: #2d2d2d !important;
+      border: 1px solid #3d3d3d;
+      .font {
+        color: #e0e0e0 !important;
+      }
+
+      .rg img {
+        filter: invert(80%); // 使箭头图标在深色模式下可见
+      }
+    }
+
+    .change-language {
+      background-color: #3a3a3a !important;
+      color: #e0e0e0 !important;
+    }
+  }
+  .logo img {
+    filter: invert(1); /* 直接反相 */
+  }
+}
+@media (min-width: 501px) {
+  .container .content {
+    max-width: 375px;
   }
 }
 
 .container {
   // display: flex;
   // justify-content: center;
-  min-height: 100vh;
-  padding-bottom: 50px;
-  background: linear-gradient(
-    -90deg,
-    rgba(243, 244, 246, 1) 0%,
-    rgba(242, 233, 225, 1) 100%
-  );
+  background-color: #f0f0f0;
   .content {
     padding-top: 100px;
     position: relative;
-    max-width: 1000px;
+    min-height: 100vh;
+    padding-bottom: 50px;
     margin: 0 auto;
+    box-shadow: 0 0 10px #0000001a;
+    background: linear-gradient(
+      -90deg,
+      rgba(243, 244, 246, 1) 0%,
+      rgba(242, 233, 225, 1) 100%
+    );
     .bg-top {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      top: -220px;
-      img {
-        max-width: 370px;
-        height: 100%;
-      }
+      height: auto; /* 添加高度自适应 */
+      overflow: hidden; /* 防止溢出 */
+    }
+
+    .bg-top img {
+      width: 100%;
+      height: auto; /* 保持宽高比 */
+      object-fit: cover; /* 确保图片覆盖但不失真 */
+      object-position: top; /* 对齐顶部 */
     }
     .logo-bg {
+      position: relative;
       display: flex;
       justify-content: center;
+      z-index: 1;
       .logo {
         width: 85px;
         height: 40px;
         img {
           width: 100%;
           height: 100%;
-        }
-      }
-    }
-    .change-language {
-      display: flex;
-      align-items: center;
-      position: absolute;
-      top: 30px;
-      right: 30px;
-      font-size: 14px;
-      color: #fff;
-      background-color: #facbab;
-      padding: 5px 15px;
-      border-radius: 10px;
-      .icon {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        img {
-          width: 18px;
-          height: 20px;
-          margin-left: 3px;
         }
       }
     }
@@ -199,7 +235,31 @@ const goDownload = (type) => {
       margin: 0 auto;
       margin-top: 45px;
       padding: 30px 10px;
-
+      position: relative;
+      z-index: 1;
+      .change-language {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        top: -250px;
+        right: 0px;
+        font-size: 12px;
+        color: #fff;
+        border-radius: 5px;
+        padding: 5px 10px;
+        background-color: #FCBB8D;
+        cursor: pointer;
+        .icons {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img {
+            width: 15px;
+            height: 18px;
+            margin-left: 3px;
+          }
+        }
+      }
       .icon {
         width: 45px;
         height: 47px;
@@ -231,7 +291,6 @@ const goDownload = (type) => {
         justify-content: space-between;
         flex-wrap: wrap;
         margin-top: 20px;
-
         .down-component {
           display: flex;
           align-items: center;
@@ -245,14 +304,18 @@ const goDownload = (type) => {
           padding: 10px 0px;
           font-size: 14px;
           padding: 10px 10px;
+          white-space: pre-line;
+          cursor: pointer;
         }
       }
     }
 
     .join {
+      width: 330px;
       text-align: center;
       font-size: 12px;
       color: #bcbcbc;
+      margin: 0 auto;
       margin-top: 20px;
     }
 
@@ -265,14 +328,14 @@ const goDownload = (type) => {
       border-radius: 10px;
       padding: 20px;
       margin-top: 20px;
-
+      cursor: pointer;
       .lf {
         display: flex;
         align-items: center;
 
         .icon {
-          width: 15px;
-          height: 18px;
+          width: 20px;
+          height: 20px;
           margin-left: 5px;
 
           img {

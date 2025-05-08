@@ -5,10 +5,10 @@
   "desc_one":"Light Year also supports",
   "desc_two":"Android, iOS, Android 32-bit, Google Play version",
   "desc_three":"Make sure your app is up to date to get the latest features",
-  "ios_download":"iOS Download",
-  "android_download":"Android Download",
-  "android_32bit_download":"Android 32bit Download",
-  "android_google_play_download":"GooglePlay Download",
+  "ios_download":"iOS\nDownload",
+  "android_download":"Android\nDownload",
+  "android_32bit_download":"Android 32bit\nDownload",
+  "android_google_play_download":"GooglePlay\nDownload",
   "join":"Join the official fan group chat to explore more interesting content",
   "group":"Join the official fan chat"
 }
